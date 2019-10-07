@@ -1,0 +1,42 @@
+<html>
+<head>
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+<script>
+    var url ="https://api.nytimes.com/svc/search/v2/articlesearch.json?q=rainbow&api-key=p0XZnLAshQFE5VSVQfyFuW9HQXagNG22";
+    var articleCount = 0
+    
+    function setup() {
+   //P5 usually used for drawing 
+   noCanvas();
+   //SEND the URL and when the data comes back, run the function "gotData" 
+   loadJSON(url, gotData);
+}
+    
+    //gotDATA for now just announces itself 
+function gotData(data) {
+    alert("FUNCTION GOTDATA WAS ACTIVATED")
+    var text =''
+    for (i=0; i < data.response.docs.length; i++) {
+        text = text +'<br />'+ data.response.docs[i].headline.main
+    }
+    document.getElementById("test_output").innerHTML=text;
+//    document.getElementById("my_test").innerHTML=data.response.docs.length;
+}
+    
+    
+    
+    </script>
+    
+<title>QI INF1339 Project 2</title>
+    </head>
+    
+<body>
+<h1>New York Times API: Articles from all time about rainbows</h1>
+<p id="test_output" class="output"></p>
+<!--<p id="my_test"></p>-->
+
+</body>
+    
+</html>
